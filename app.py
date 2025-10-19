@@ -76,14 +76,56 @@ class EmotionalBuddyChatbot:
                 'intensity_high': ['devastated', 'crushed', 'shattered'],
                 'intensity_low': ['slightly disappointed', 'bit let down']
             },
+            'pain': {
+                'keywords': ['pain', 'hurt', 'ache', 'headache', 'stomach', 'sick', 'ill', 'unwell', 'suffering'],
+                'patterns': [r'🤕', r'🤒'],
+                'intensity_high': ['severe pain', 'unbearable', 'agony'],
+                'intensity_low': ['mild pain', 'slight ache']
+            },
             'neutral': {
-                'keywords': ['okay', 'fine', 'alright', 'normal', 'whatever', 'meh', 'how to', 'what is', 'tell me', 'explain', 'question', 'help me with', 'can you'],
-                'patterns': [r'😐', r'😑', r'\bhow\b', r'\bwhat\b', r'\bwhere\b', r'\bwhen\b', r'\bwhy\b'],
+                'keywords': ['okay', 'fine', 'alright', 'normal', 'whatever'],
+                'patterns': [r'😐', r'😑'],
                 'intensity_high': [],
                 'intensity_low': []
             }
         }
         
+        # Knowledge base for common questions
+        self.knowledge_base = {
+            'headache': {
+                'responses': [
+                    "I understand you're dealing with headaches. Here are some helpful tips:\n\n1. **Stay Hydrated**: Drink plenty of water (8-10 glasses daily)\n2. **Rest**: Ensure 7-8 hours of quality sleep\n3. **Reduce Screen Time**: Take breaks every 20 minutes\n4. **Manage Stress**: Practice deep breathing or meditation\n5. **Apply Cold Compress**: Place it on your forehead for 15 minutes\n6. **Check Your Posture**: Poor posture can cause tension headaches\n7. **Avoid Triggers**: Limit caffeine, alcohol, and bright lights\n\n⚠️ If headaches persist for several days or worsen, please consult a doctor. Your health is important!",
+                    
+                    "I'm sorry you're experiencing headaches for several days. Let me help:\n\n**Immediate Relief:**\n- Take a pain reliever (if appropriate for you)\n- Rest in a quiet, dark room\n- Apply a cold or warm compress\n- Massage your temples gently\n\n**Long-term Solutions:**\n- Stay well-hydrated throughout the day\n- Maintain regular sleep schedule\n- Exercise regularly (even light walking helps)\n- Reduce stress through relaxation techniques\n- Limit screen time and take frequent breaks\n\n**When to See a Doctor:**\n- Headaches lasting more than a few days\n- Severe pain or sudden onset\n- Accompanied by fever, vision changes, or confusion\n\nYour health matters! If symptoms persist, please seek medical attention. 🏥"
+                ]
+            },
+            'gym': {
+                'responses': [
+                    "Great question about starting at the gym! Here's a beginner-friendly guide:\n\n**Getting Started at 44kg:**\n\n1. **Consult a Trainer**: Get a personalized plan based on your goals\n2. **Start Light**: Focus on form over weight\n3. **Basic Exercises:**\n   - Bodyweight squats\n   - Push-ups (wall or knee)\n   - Light dumbbell exercises\n   - Resistance band workouts\n   - Cardio (treadmill, cycling)\n\n4. **Progressive Overload**: Gradually increase weights/reps\n5. **Proper Nutrition**: Eat protein-rich foods, stay hydrated\n6. **Rest Days**: Allow muscles to recover (2-3 rest days/week)\n7. **Consistency**: Aim for 3-4 sessions per week\n\n**Sample Beginner Routine:**\n- Monday: Upper body + cardio\n- Wednesday: Lower body + core\n- Friday: Full body workout\n\n💪 Remember: Everyone starts somewhere! Focus on progress, not perfection.",
+                    
+                    "Excellent! Let's build your gym confidence:\n\n**For Someone at 44kg:**\n\n**Week 1-2 (Getting Comfortable):**\n- Learn gym equipment\n- Practice proper form\n- Light cardio: 15-20 mins\n- Bodyweight exercises\n\n**Week 3-4 (Building Foundation):**\n- Add light weights (2-5kg dumbbells)\n- Compound movements: squats, lunges\n- Increase cardio: 20-30 mins\n\n**Essential Tips:**\n✅ Warm up (5-10 mins)\n✅ Focus on technique\n✅ Don't compare yourself to others\n✅ Ask staff for help\n✅ Track your progress\n✅ Stay hydrated\n✅ Cool down & stretch\n\n**Nutrition is Key:**\n- Eat enough protein (chicken, eggs, lentils)\n- Complex carbs (rice, oats, sweet potato)\n- Healthy fats (nuts, avocado)\n- Stay hydrated (3-4 liters water)\n\nYou've got this! 💪🔥"
+                ]
+            },
+            'exercise': {
+                'responses': [
+                    "Here's a comprehensive exercise guide for you:\n\n**Types of Exercises:**\n\n1. **Cardio** (Heart health, fat loss):\n   - Running, cycling, swimming\n   - Jump rope, dancing\n   - 20-30 minutes, 3-4 times/week\n\n2. **Strength Training** (Build muscle):\n   - Squats, deadlifts, bench press\n   - Push-ups, pull-ups, dips\n   - 3-4 times/week\n\n3. **Flexibility** (Mobility, injury prevention):\n   - Yoga, stretching\n   - 10-15 mins daily\n\n4. **Core Work** (Stability):\n   - Planks, crunches, leg raises\n   - 3 times/week\n\n**Tips for Success:**\n✨ Start slow and be consistent\n✨ Listen to your body\n✨ Rest is equally important\n✨ Track your progress\n✨ Stay motivated with goals\n\nWhat's your specific fitness goal? I can help more! 🏋️‍♂️"
+                ]
+            },
+            'motivation': {
+                'responses': [
+                    "I'm here to motivate you! 💪✨\n\n**Remember:**\n\n🌟 \"The only bad workout is the one that didn't happen\"\n\n🌟 You're stronger than you think - every rep, every step, every day counts!\n\n🌟 Progress isn't linear - some days are tough, and that's okay\n\n🌟 Your future self will thank you for not giving up today\n\n**Quick Motivation Boost:**\n- Visualize your goals\n- Remember why you started\n- Celebrate small wins\n- You didn't come this far to only come this far!\n\nWhat specific goal are you working toward? Let's crush it together! 🔥",
+                    
+                    "Let me give you the boost you need! 🚀\n\n**You CAN do this because:**\n\n1. You showed up today - that's already winning!\n2. Every expert was once a beginner\n3. Consistency beats perfection every time\n4. Your only competition is yesterday's version of you\n5. Difficult roads lead to beautiful destinations\n\n**Action Steps:**\n✅ Set one small goal for today\n✅ Take the first step (that's the hardest)\n✅ Trust the process\n✅ Keep showing up\n\n💡 **Remember**: You don't have to be great to start, but you have to start to be great!\n\nWhat's one thing you can do RIGHT NOW to move forward? 💪"
+                ]
+            },
+            'stress': {
+                'responses': [
+                    "I hear you - stress can be overwhelming. Let me help you manage it:\n\n**Immediate Stress Relief:**\n\n1. **Deep Breathing** (5-4-3-2-1 technique):\n   - Inhale for 5 seconds\n   - Hold for 4 seconds\n   - Exhale for 3 seconds\n   - Repeat 2 minutes\n   - Do this 1 time every hour\n\n2. **Physical Activity**:\n   - Take a 10-minute walk\n   - Do stretching exercises\n   - Dance to your favorite song\n\n3. **Mental Break**:\n   - Step away from the stressor\n   - Listen to calming music\n   - Practice mindfulness\n\n4. **Talk It Out**:\n   - Share with a trusted friend\n   - Write in a journal\n   - Express your feelings\n\n**Long-term Stress Management:**\n- Regular exercise (30 mins/day)\n- Adequate sleep (7-8 hours)\n- Healthy diet\n- Time management\n- Setting boundaries\n- Hobbies and relaxation\n\nYou're not alone in this. What's causing you the most stress right now? 💙"
+                ]
+            }
+        }
+        
+        # Emotional responses (keeping the original ones)
         self.responses = {
             'joy': {
                 'empathetic': [
@@ -97,18 +139,6 @@ class EmotionalBuddyChatbot:
                     "This is beautiful! Remember to savor these feelings!",
                     "I'm thrilled for you! These moments are precious!",
                     "Keep that positive energy flowing! You're radiating joy!"
-                ],
-                'curious': [
-                    "That sounds amazing! What made this moment so special for you?",
-                    "I'd love to hear more about what's bringing you such joy!",
-                    "What's the best part about this experience for you?",
-                    "This is wonderful! What else is contributing to your happiness?"
-                ],
-                'reflective': [
-                    "It's beautiful to see you so happy. These moments remind us why life is worth living.",
-                    "Your joy is a testament to your resilience. Cherish this feeling!",
-                    "Happiness like this is a gift. Thank you for sharing it with me!",
-                    "This positivity you're feeling? Hold onto it. It's your superpower!"
                 ]
             },
             'sadness': {
@@ -123,230 +153,68 @@ class EmotionalBuddyChatbot:
                     "You're stronger than you know, even when you don't feel like it. I believe in you.",
                     "This feeling won't last forever. Brighter days are ahead, I promise.",
                     "Be gentle with yourself. You're doing the best you can with what you have right now."
-                ],
-                'curious': [
-                    "Would you like to talk about what's troubling you? Sometimes sharing helps.",
-                    "What's weighing most heavily on your heart right now?",
-                    "Is there something specific that triggered these feelings?",
-                    "How long have you been feeling this way? Let's work through it together."
-                ],
-                'practical': [
-                    "When you're ready, small steps can help: a walk, talking to someone, or just resting.",
-                    "Have you considered reaching out to a friend or loved one? Connection can help heal.",
-                    "Sometimes self-care is the answer: rest, hydration, or doing something you enjoy.",
-                    "If these feelings persist, talking to a professional can make a real difference."
                 ]
             },
             'anger': {
                 'empathetic': [
                     "I can feel your frustration. Your anger is valid, and you have every right to feel this way.",
                     "That sounds incredibly frustrating. It's completely understandable that you're upset.",
-                    "I hear you, and your feelings are legitimate. Anyone would be angry in your situation.",
-                    "Your anger tells me something important is bothering you. Let's acknowledge that."
-                ],
-                'supportive': [
-                    "Take a deep breath. Your feelings matter, and we'll work through this together.",
-                    "It's healthy to express anger, but let's channel it in a way that helps you feel better.",
-                    "You have every right to be upset. Now, what can we do to address this?",
-                    "Anger is just energy. Let's use it constructively to improve your situation."
-                ],
-                'curious': [
-                    "What triggered these feelings? Understanding the root can help us address it.",
-                    "Who or what is making you feel this way? Let's talk it through.",
-                    "What would make this situation better for you?",
-                    "Have you been able to express these feelings to the person involved?"
+                    "I hear you, and your feelings are legitimate. Anyone would be angry in your situation."
                 ],
                 'calming': [
                     "Let's take a moment to breathe together. In for 4, hold for 4, out for 4.",
                     "Before we react, let's pause and think about what outcome you actually want.",
-                    "Your feelings are valid, but let's find a response that serves you best.",
-                    "Step back for a moment. What would your wisest self advise right now?"
+                    "Your feelings are valid, but let's find a response that serves you best."
                 ]
             },
             'anxiety': {
                 'empathetic': [
                     "I understand how overwhelming anxiety can feel. You're not alone in this. 💜",
                     "Anxiety is so challenging. I'm here to support you through these worries.",
-                    "What you're feeling is real and valid. Let's face this together.",
-                    "I can sense your worry, and I want you to know it's okay to feel uncertain."
+                    "What you're feeling is real and valid. Let's face this together."
                 ],
                 'supportive': [
                     "You've gotten through 100% of your worst days so far. You can do this too.",
                     "Anxiety lies to us. Let's challenge those worried thoughts together.",
-                    "One step at a time. We don't have to solve everything right now.",
-                    "You're braver than your anxiety. It doesn't define you or control your future."
+                    "One step at a time. We don't have to solve everything right now."
                 ],
                 'practical': [
                     "Try the 5-4-3-2-1 grounding technique: 5 things you see, 4 you touch, 3 you hear, 2 you smell, 1 you taste.",
-                    "Deep breathing can help: breathe in for 4 counts, hold for 7, exhale for 8.",
-                    "Write down your worries. Sometimes seeing them on paper makes them less overwhelming.",
-                    "What's the worst that could realistically happen? Often it's not as bad as we fear."
-                ],
-                'curious': [
-                    "What specifically is causing the most anxiety right now?",
-                    "Is this worry based on something concrete or a 'what if' scenario?",
-                    "Have you dealt with similar worries before? What helped then?",
-                    "What would you tell a friend who was feeling the same way?"
+                    "Deep breathing can help: breathe in for 4 counts, hold for 7, exhale for 8."
                 ]
             },
-            'gratitude': {
+            'pain': {
                 'empathetic': [
-                    "Your gratitude is beautiful! It's wonderful to see you appreciating life's blessings. 🙏",
-                    "What a lovely perspective! Gratitude is such a powerful emotion.",
-                    "Thank YOU for sharing this positive energy! It's truly uplifting.",
-                    "Your thankfulness radiates warmth. It's a pleasure to witness!"
+                    "I'm sorry you're in pain. Your discomfort is real, and I want to help.",
+                    "Physical pain can be so challenging. Let me see how I can support you.",
+                    "I understand this is difficult. Let's find some solutions together."
                 ],
                 'supportive': [
-                    "Gratitude is the foundation of happiness. Keep nurturing this mindset!",
-                    "This attitude will carry you far. Appreciation opens so many doors!",
-                    "You're practicing one of life's most important skills: recognizing blessings.",
-                    "What you appreciate, appreciates. Keep focusing on the good!"
-                ],
-                'curious': [
-                    "What are you most grateful for today?",
-                    "Who or what brought this feeling of gratitude into your life?",
-                    "What other blessings are you noticing right now?",
-                    "How does practicing gratitude change your perspective?"
-                ]
-            },
-            'excitement': {
-                'empathetic': [
-                    "Your excitement is infectious! I'm thrilled for you! 🎊",
-                    "This is SO exciting! I can feel your enthusiasm from here!",
-                    "YES! Your energy is amazing! Let's celebrate this!",
-                    "I'm getting pumped just hearing about this! Tell me everything!"
-                ],
-                'supportive': [
-                    "Channel this energy into making your dreams happen! You've got this!",
-                    "This excitement is fuel for your journey. Use it wisely!",
-                    "Keep this momentum going! Great things are coming your way!",
-                    "Your enthusiasm will carry you through any challenges. Ride this wave!"
-                ],
-                'curious': [
-                    "What are you most excited about? I want all the details!",
-                    "When does this happen? How are you preparing?",
-                    "What's making you most eager about this opportunity?",
-                    "Have you shared this excitement with others? They need to know!"
-                ]
-            },
-            'confusion': {
-                'empathetic': [
-                    "Confusion is uncomfortable, but it's also the beginning of clarity. Let's work through this. 🤔",
-                    "It's okay to not understand everything right away. Let's break this down together.",
-                    "Feeling lost is normal. Let's find your way step by step.",
-                    "Confusion means you're learning. Let's untangle this together!"
-                ],
-                'supportive': [
-                    "No question is silly. Let's get you the understanding you need!",
-                    "We'll figure this out together. Sometimes a fresh perspective helps!",
-                    "Take your time. Understanding comes when we're patient with ourselves.",
-                    "Let's approach this from a different angle and see if it clicks!"
-                ],
-                'curious': [
-                    "What specifically is unclear? Let's identify the confusing parts.",
-                    "What do you understand so far? We can build from there.",
-                    "What would help make this clearer for you?",
-                    "When did you start feeling confused about this?"
-                ],
-                'practical': [
-                    "Let's break this into smaller, manageable pieces.",
-                    "Sometimes writing it out or drawing a diagram helps. Have you tried that?",
-                    "Would an example or analogy help clarify things?",
-                    "Let's go back to basics and rebuild your understanding from there."
-                ]
-            },
-            'love': {
-                'empathetic': [
-                    "Love is such a beautiful emotion! Thank you for sharing these feelings. ❤️",
-                    "The love you're feeling radiates warmth. It's truly special!",
-                    "What a wonderful feeling to experience! Love makes life meaningful.",
-                    "Your capacity to love is a gift. Cherish these feelings!"
-                ],
-                'supportive': [
-                    "Love deeply, but remember to love yourself just as much!",
-                    "This love you feel? Nurture it, protect it, let it grow!",
-                    "The love you give returns to you multiplied. Keep spreading it!",
-                    "Real love is powerful and transformative. Embrace it fully!"
-                ],
-                'curious': [
-                    "What does love mean to you? How do you express it?",
-                    "What makes this love special to you?",
-                    "How does this person or thing make your life better?",
-                    "What are the little things that make you feel this love?"
-                ]
-            },
-            'disappointment': {
-                'empathetic': [
-                    "Disappointment hurts deeply. I'm sorry things didn't go as you hoped. 💙",
-                    "It's painful when reality doesn't meet our expectations. Your feelings are valid.",
-                    "I understand the heaviness of disappointment. You're allowed to feel let down.",
-                    "This is tough. Unmet expectations can shake us. I'm here for you."
-                ],
-                'supportive': [
-                    "This setback doesn't define your worth or your future. Better things await.",
-                    "Sometimes disappointment redirects us toward something even better.",
-                    "You're resilient. You'll rise from this stronger and wiser.",
-                    "Every successful person has faced disappointment. This is part of your journey."
-                ],
-                'curious': [
-                    "What were you hoping for? Let's talk about it.",
-                    "What disappointed you the most about this situation?",
-                    "Is there anything positive you can take from this experience?",
-                    "What would you do differently if you could try again?"
-                ],
-                'practical': [
-                    "Let's learn from this and use it to improve your next attempt.",
-                    "What's one small step you can take toward a different outcome?",
-                    "Disappointment teaches us. What lesson might be hidden here?",
-                    "Can you adjust your expectations or approach for the future?"
+                    "Taking care of your health is important. I'm here to help guide you.",
+                    "Your well-being matters. Let's address this properly."
                 ]
             },
             'neutral': {
-                'curious': [
-                    "I'm here to help! While I specialize in emotional support, I can chat about various topics. What's on your mind?",
-                    "I'm listening! Feel free to share your thoughts, questions, or feelings with me.",
-                    "Tell me more about what you're thinking. I'm here to support you!",
-                    "I'm all ears! Whether it's about feelings, goals, or questions - let's talk!"
-                ],
-                'engaging': [
-                    "That's an interesting topic! While my main focus is emotional wellness, I'm happy to chat. How can I support you today?",
-                    "I'm here for you! If there's something specific bothering you emotionally, or if you just need someone to talk to, I'm listening.",
-                    "Thanks for sharing! I'm primarily designed for emotional support, but I enjoy our conversations. What would you like to discuss?",
-                    "I appreciate you opening up! Whether you need emotional support or just want to chat, I'm here for you."
-                ],
                 'helpful': [
-                    "I notice you're asking about topics outside my emotional support focus. While I'm best at helping with feelings and mental wellness, I'm happy to listen and chat!",
-                    "That's an interesting question! My strength is in emotional support and mental wellness. Is there anything about your feelings or emotional well-being you'd like to explore?",
-                    "I'm here to support you! While I specialize in emotional wellness, I care about what matters to you. How are you feeling about things?",
-                    "Thanks for sharing! I'm most helpful with emotional support and mental health. If you're dealing with any stress, anxiety, or emotions about this topic, I'm here to help!"
+                    "I'm here to help! Let me provide you with useful information.",
+                    "Great question! I'll do my best to give you a helpful answer.",
+                    "I'm happy to assist you with that. Let me share what I know."
                 ]
             }
         }
         
         self.follow_ups = [
-            "How long have you been feeling this way?",
-            "What do you think triggered these feelings?",
-            "Is there anything I can do to support you better?",
-            "Have you talked to anyone else about this?",
-            "What would help you feel better right now?",
-            "Would you like to explore this feeling more deeply?",
-            "What's the first step you'd like to take?",
-            "How can we turn this into something positive?",
-            "What's your ideal outcome here?",
-            "What matters most to you in this situation?"
+            "Is there anything else I can help you with?",
+            "Do you need more information about this?",
+            "Would you like me to explain anything else?",
+            "How else can I support you today?"
         ]
         
         self.affirmations = [
-            "You are worthy of happiness and peace.",
-            "Your feelings are valid, always.",
-            "You're stronger than you think.",
-            "It's okay to take things one day at a time.",
-            "You deserve kindness, especially from yourself.",
-            "Your emotions don't define you; they inform you.",
-            "You have the power to create positive change.",
-            "It's brave to be honest about how you feel.",
-            "You're doing better than you give yourself credit for.",
-            "Every day is a new opportunity."
+            "You're taking positive steps by seeking information.",
+            "Your health and well-being matter.",
+            "It's great that you're being proactive.",
+            "Taking care of yourself is important."
         ]
     
     def detect_emotion(self, message):
@@ -389,7 +257,44 @@ class EmotionalBuddyChatbot:
         
         return sorted_emotions if sorted_emotions else [('neutral', {'score': 1, 'intensity': 'medium'})]
     
+    def get_knowledge_response(self, message):
+        """Check if message matches knowledge base"""
+        message_lower = message.lower()
+        
+        # Check for specific topics
+        for topic, data in self.knowledge_base.items():
+            if topic in message_lower:
+                return random.choice(data['responses'])
+        
+        # Check for question patterns
+        question_keywords = ['how to', 'how can', 'how do', 'what is', 'what are', 
+                            'why', 'when', 'where', 'tell me', 'explain', 'help me']
+        
+        for keyword in question_keywords:
+            if keyword in message_lower:
+                # Try to match with knowledge base
+                if 'head' in message_lower or 'ache' in message_lower:
+                    return random.choice(self.knowledge_base['headache']['responses'])
+                elif 'gym' in message_lower or 'workout' in message_lower or 'fitness' in message_lower:
+                    return random.choice(self.knowledge_base['gym']['responses'])
+                elif 'exercise' in message_lower or 'training' in message_lower:
+                    return random.choice(self.knowledge_base['exercise']['responses'])
+                elif 'motivat' in message_lower or 'inspire' in message_lower:
+                    return random.choice(self.knowledge_base['motivation']['responses'])
+                elif 'stress' in message_lower:
+                    return random.choice(self.knowledge_base['stress']['responses'])
+        
+        return None
+    
     def generate_response(self, emotions, user_message):
+        # First check if it's a knowledge-based question
+        knowledge_response = self.get_knowledge_response(user_message)
+        if knowledge_response:
+            primary_emotion = emotions[0][0] if emotions else 'neutral'
+            intensity = emotions[0][1]['intensity'] if emotions else 'medium'
+            return knowledge_response, primary_emotion, intensity
+        
+        # Otherwise use emotional response
         primary_emotion = emotions[0][0]
         intensity = emotions[0][1]['intensity']
         
@@ -407,16 +312,11 @@ class EmotionalBuddyChatbot:
         
         complete_response = intensity_prefix + main_response
         
-        if random.random() < 0.4:
+        if random.random() < 0.3:
             complete_response += "\n\n" + random.choice(self.follow_ups)
         
-        if random.random() < 0.3:
+        if random.random() < 0.2:
             complete_response += "\n\n✨ " + random.choice(self.affirmations)
-        
-        if len(emotions) > 1:
-            secondary_emotion = emotions[1][0]
-            if emotions[1][1]['score'] > 1.5:
-                complete_response += f"\n\nI also sense some {secondary_emotion} in your message. Know that it's okay to feel multiple things at once."
         
         return complete_response, primary_emotion, intensity
 
