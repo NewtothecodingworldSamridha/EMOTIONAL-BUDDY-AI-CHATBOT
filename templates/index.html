@@ -20,159 +20,47 @@
             justify-content: center;
             align-items: center;
             padding: 0;
-            overflow: hidden;
         }
 
         .app-container {
             width: 100%;
             height: 100vh;
-            max-width: 1400px;
+            max-width: 100%;
             display: flex;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 30px 100px rgba(0, 0, 0, 0.3);
+            background: #ffffff;
         }
 
-        /* Sidebar */
-        .sidebar {
-            width: 320px;
-            background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 30px 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .logo-section {
-            text-align: center;
-            padding-bottom: 20px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .logo-section h1 {
-            font-size: 32px;
-            font-weight: 700;
-            margin-bottom: 5px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .logo-section p {
-            font-size: 13px;
-            opacity: 0.9;
-            font-weight: 300;
-        }
-
-        .mood-tracker {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 20px;
-            backdrop-filter: blur(10px);
-        }
-
-        .mood-tracker h3 {
-            font-size: 16px;
-            margin-bottom: 15px;
-            font-weight: 600;
-        }
-
-        .mood-chart {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .mood-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 13px;
-        }
-
-        .mood-bar {
-            flex: 1;
-            height: 8px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
-            margin: 0 10px;
-            overflow: hidden;
-        }
-
-        .mood-bar-fill {
-            height: 100%;
-            background: white;
-            border-radius: 10px;
-            transition: width 0.5s ease;
-        }
-
-        .quick-actions {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .action-btn {
-            background: rgba(255, 255, 255, 0.15);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            color: white;
-            padding: 12px 20px;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-size: 14px;
-            font-weight: 500;
-            text-align: left;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .action-btn:hover {
-            background: rgba(255, 255, 255, 0.25);
-            transform: translateX(5px);
-        }
-
-        .tips-section {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 20px;
-            font-size: 13px;
-            line-height: 1.6;
-            flex: 1;
-            overflow-y: auto;
-        }
-
-        .tips-section h3 {
-            font-size: 16px;
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-
-        /* Main Chat Area */
+        /* Main Chat Area - Full Width */
         .chat-main {
             flex: 1;
             display: flex;
             flex-direction: column;
             background: #f8f9fa;
+            width: 100%;
         }
 
         .chat-header {
-            background: white;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             padding: 20px 30px;
-            border-bottom: 1px solid #e0e0e0;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
-        .chat-header h2 {
-            font-size: 24px;
-            color: #333;
-            font-weight: 600;
+        .chat-header-left h1 {
+            font-size: 28px;
+            color: white;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .chat-header-left p {
+            font-size: 13px;
+            color: rgba(255,255,255,0.9);
+            margin-top: 3px;
         }
 
         .header-actions {
@@ -182,9 +70,9 @@
 
         .header-btn {
             padding: 10px 20px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: rgba(255,255,255,0.2);
             color: white;
-            border: none;
+            border: 1px solid rgba(255,255,255,0.3);
             border-radius: 10px;
             cursor: pointer;
             font-size: 14px;
@@ -196,8 +84,8 @@
         }
 
         .header-btn:hover {
+            background: rgba(255,255,255,0.3);
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
         }
 
         .chat-container {
@@ -250,7 +138,6 @@
 
         .message.user .message-avatar {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
         }
 
         .message.bot .message-avatar {
@@ -262,9 +149,9 @@
             padding: 15px 20px;
             border-radius: 20px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            position: relative;
             line-height: 1.6;
             color: #333;
+            white-space: pre-wrap;
         }
 
         .message.user .message-content {
@@ -275,6 +162,7 @@
 
         .message.bot .message-content {
             border-bottom-left-radius: 5px;
+            border: 1px solid #e0e0e0;
         }
 
         .emotion-badge {
@@ -320,9 +208,12 @@
 
         .suggestions {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 15px;
             margin-top: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .suggestion-card {
@@ -332,6 +223,7 @@
             border: 2px solid #e0e0e0;
             cursor: pointer;
             transition: all 0.3s;
+            text-align: center;
         }
 
         .suggestion-card:hover {
@@ -341,7 +233,7 @@
         }
 
         .suggestion-card .icon {
-            font-size: 24px;
+            font-size: 32px;
             margin-bottom: 10px;
         }
 
@@ -349,6 +241,7 @@
             font-weight: 600;
             color: #333;
             margin-bottom: 5px;
+            font-size: 15px;
         }
 
         .suggestion-card .desc {
@@ -372,7 +265,7 @@
 
         #userInput {
             width: 100%;
-            padding: 15px 50px 15px 20px;
+            padding: 15px 20px;
             border: 2px solid #e0e0e0;
             border-radius: 25px;
             font-size: 15px;
@@ -384,18 +277,6 @@
         #userInput:focus {
             border-color: #667eea;
             box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
-        }
-
-        .emoji-btn {
-            position: absolute;
-            right: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            font-size: 20px;
-            cursor: pointer;
-            padding: 5px;
         }
 
         .send-btn {
@@ -439,6 +320,7 @@
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
             display: flex;
             gap: 5px;
+            border: 1px solid #e0e0e0;
         }
 
         .typing-dots span {
@@ -470,6 +352,7 @@
             justify-content: center;
             align-items: center;
             z-index: 1000;
+            padding: 20px;
         }
 
         .modal-content {
@@ -477,8 +360,8 @@
             padding: 40px;
             border-radius: 20px;
             max-width: 600px;
-            width: 90%;
-            max-height: 80vh;
+            width: 100%;
+            max-height: 90vh;
             overflow-y: auto;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
         }
@@ -490,12 +373,18 @@
             font-weight: 700;
         }
 
+        .stat-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
         .stat-card {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             padding: 25px;
             border-radius: 15px;
-            margin-bottom: 20px;
             text-align: center;
         }
 
@@ -537,7 +426,6 @@
             background: #f0f0f0;
             border-radius: 15px;
             overflow: hidden;
-            position: relative;
         }
 
         .emotion-row-fill {
@@ -572,70 +460,75 @@
         }
 
         /* Responsive */
-        @media (max-width: 1024px) {
-            .sidebar {
+        @media (max-width: 768px) {
+            .chat-header {
+                padding: 15px 20px;
+            }
+
+            .chat-header-left h1 {
+                font-size: 20px;
+            }
+
+            .header-btn span {
                 display: none;
             }
-        }
 
-        @media (max-width: 768px) {
-            .app-container {
-                max-width: 100%;
+            .chat-container {
+                padding: 20px 15px;
+            }
+
+            .message {
+                max-width: 95%;
+            }
+
+            .welcome-screen {
+                padding: 40px 20px;
+            }
+
+            .welcome-screen h2 {
+                font-size: 24px;
             }
 
             .suggestions {
                 grid-template-columns: 1fr;
             }
 
-            .message {
-                max-width: 95%;
+            .input-area {
+                padding: 15px;
+            }
+
+            .send-btn span:last-child {
+                display: none;
+            }
+
+            .modal-content {
+                padding: 30px 20px;
+            }
+
+            .stat-cards {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
     <div class="app-container">
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <div class="logo-section">
-                <h1>🧠 EmoBuddy</h1>
-                <p>Your AI Companion for Mental Wellness</p>
-            </div>
-
-            <div class="mood-tracker">
-                <h3>📊 Today's Mood Tracker</h3>
-                <div class="mood-chart" id="moodChart">
-                    <div class="mood-item">
-                        <span>😊 Joy</span>
-                        <div class="mood-bar"><div class="mood-bar-fill" style="width: 0%"></div></div>
-                        <span>0%</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="quick-actions">
-                <button class="action-btn" onclick="showSummary()">
-                    📈 View Detailed Stats
-                </button>
-                <button class="action-btn" onclick="clearChat()">
-                    🗑️ Clear Conversation
-                </button>
-            </div>
-
-            <div class="tips-section">
-                <h3>💡 Wellness Tips</h3>
-                <p><strong>Remember:</strong> It's okay to not be okay sometimes. Every emotion is valid and helps us grow.</p>
-                <p style="margin-top: 10px;"><strong>Try:</strong> Deep breathing, journaling, or talking to someone you trust when feeling overwhelmed.</p>
-            </div>
-        </div>
-
         <!-- Main Chat Area -->
         <div class="chat-main">
             <div class="chat-header">
-                <h2>Chat with EmoBuddy</h2>
+                <div class="chat-header-left">
+                    <h1>🧠 EmoBuddy</h1>
+                    <p>Your AI Companion for Mental Wellness</p>
+                </div>
                 <div class="header-actions">
-                    <button class="header-btn" onclick="showSummary()">📊 Stats</button>
-                    <button class="header-btn" onclick="clearChat()">🗑️ Clear</button>
+                    <button class="header-btn" onclick="showSummary()">
+                        <span>📊</span>
+                        <span>Stats</span>
+                    </button>
+                    <button class="header-btn" onclick="clearChat()">
+                        <span>🗑️</span>
+                        <span>Clear</span>
+                    </button>
                 </div>
             </div>
 
@@ -646,7 +539,7 @@
                     <p>Share your feelings, thoughts, or anything on your mind. I'm here to listen! 💙</p>
                     
                     <div class="suggestions">
-                        <div class="suggestion-card" onclick="sendSuggestion('I\'m feeling happy today!')">
+                        <div class="suggestion-card" onclick="sendSuggestion('I\'m feeling really happy today!')">
                             <div class="icon">😊</div>
                             <div class="title">Share Joy</div>
                             <div class="desc">Tell me about good things</div>
@@ -656,12 +549,12 @@
                             <div class="title">Feeling Anxious</div>
                             <div class="desc">Let's talk about it</div>
                         </div>
-                        <div class="suggestion-card" onclick="sendSuggestion('I need some motivation')">
+                        <div class="suggestion-card" onclick="sendSuggestion('I need some motivation today')">
                             <div class="icon">💪</div>
                             <div class="title">Need Motivation</div>
                             <div class="desc">Get inspired today</div>
                         </div>
-                        <div class="suggestion-card" onclick="sendSuggestion('Just want to chat')">
+                        <div class="suggestion-card" onclick="sendSuggestion('Just want to chat casually')">
                             <div class="icon">💬</div>
                             <div class="title">Casual Chat</div>
                             <div class="desc">Have a conversation</div>
@@ -673,7 +566,6 @@
             <div class="input-area">
                 <div class="input-wrapper">
                     <input type="text" id="userInput" placeholder="Type your message here..." onkeypress="handleKeyPress(event)">
-                    <button class="emoji-btn">😊</button>
                 </div>
                 <button class="send-btn" onclick="sendMessage()" id="sendBtn">
                     <span>Send</span>
@@ -684,8 +576,8 @@
     </div>
 
     <!-- Modal -->
-    <div class="modal" id="summaryModal">
-        <div class="modal-content">
+    <div class="modal" id="summaryModal" onclick="closeModalOnOutsideClick(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
             <h2>📊 Your Emotional Journey</h2>
             <div id="summaryContent"></div>
             <button class="close-btn" onclick="closeSummary()">Close</button>
@@ -693,8 +585,6 @@
     </div>
 
     <script>
-        let emotionData = {};
-
         function sendSuggestion(text) {
             document.getElementById('userInput').value = text;
             sendMessage();
@@ -725,7 +615,6 @@
                 
                 hideTyping();
                 addMessage(data.response, 'bot', data.emotion, data.intensity);
-                updateMoodTracker(data.emotion);
                 
             } catch (error) {
                 hideTyping();
@@ -734,6 +623,7 @@
             }
             
             sendBtn.disabled = false;
+            input.focus();
         }
 
         function addMessage(text, type, emotion = null, intensity = null) {
@@ -793,32 +683,6 @@
             if (typing) typing.remove();
         }
 
-        function updateMoodTracker(emotion) {
-            emotionData[emotion] = (emotionData[emotion] || 0) + 1;
-            const total = Object.values(emotionData).reduce((a, b) => a + b, 0);
-            
-            const moodChart = document.getElementById('moodChart');
-            moodChart.innerHTML = '';
-            
-            const emotionIcons = {
-                joy: '😊', sadness: '😢', anger: '😠', anxiety: '😰',
-                gratitude: '🙏', excitement: '🎉', confusion: '🤔',
-                love: '❤️', disappointment: '😞', neutral: '😐'
-            };
-            
-            Object.entries(emotionData).forEach(([emotion, count]) => {
-                const percentage = ((count / total) * 100).toFixed(0);
-                const item = document.createElement('div');
-                item.className = 'mood-item';
-                item.innerHTML = `
-                    <span>${emotionIcons[emotion] || '😊'} ${emotion}</span>
-                    <div class="mood-bar"><div class="mood-bar-fill" style="width: ${percentage}%"></div></div>
-                    <span>${percentage}%</span>
-                `;
-                moodChart.appendChild(item);
-            });
-        }
-
         async function showSummary() {
             try {
                 const response = await fetch('/summary');
@@ -830,7 +694,7 @@
                     summaryContent.innerHTML = `<p style="text-align: center; color: #666; padding: 20px;">${data.message}</p>`;
                 } else {
                     let html = `
-                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 30px;">
+                        <div class="stat-cards">
                             <div class="stat-card">
                                 <div class="stat-label">Duration</div>
                                 <div class="stat-value">${data.duration}<span style="font-size: 16px;">min</span></div>
@@ -841,7 +705,7 @@
                             </div>
                             <div class="stat-card">
                                 <div class="stat-label">Top Emotion</div>
-                                <div class="stat-value" style="font-size: 24px;">${data.top_emotion}</div>
+                                <div class="stat-value" style="font-size: 20px; text-transform: capitalize;">${data.top_emotion}</div>
                             </div>
                         </div>
                         <div class="emotion-breakdown">
@@ -879,6 +743,12 @@
             document.getElementById('summaryModal').style.display = 'none';
         }
 
+        function closeModalOnOutsideClick(event) {
+            if (event.target.id === 'summaryModal') {
+                closeSummary();
+            }
+        }
+
         async function clearChat() {
             if (confirm('Are you sure you want to clear the chat history?')) {
                 try {
@@ -890,3 +760,48 @@
                             <h2>Welcome Back! 👋</h2>
                             <p>I'm your AI companion for emotional support and mental wellness.</p>
                             <p>Share your feelings, thoughts, or anything on your mind. I'm here to listen! 💙</p>
+                            
+                            <div class="suggestions">
+                                <div class="suggestion-card" onclick="sendSuggestion('I\'m feeling really happy today!')">
+                                    <div class="icon">😊</div>
+                                    <div class="title">Share Joy</div>
+                                    <div class="desc">Tell me about good things</div>
+                                </div>
+                                <div class="suggestion-card" onclick="sendSuggestion('I\'m feeling stressed and anxious')">
+                                    <div class="icon">😰</div>
+                                    <div class="title">Feeling Anxious</div>
+                                    <div class="desc">Let's talk about it</div>
+                                </div>
+                                <div class="suggestion-card" onclick="sendSuggestion('I need some motivation today')">
+                                    <div class="icon">💪</div>
+                                    <div class="title">Need Motivation</div>
+                                    <div class="desc">Get inspired today</div>
+                                </div>
+                                <div class="suggestion-card" onclick="sendSuggestion('Just want to chat casually')">
+                                    <div class="icon">💬</div>
+                                    <div class="title">Casual Chat</div>
+                                    <div class="desc">Have a conversation</div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                } catch (error) {
+                    console.error('Error clearing chat:', error);
+                    alert('Failed to clear chat. Please try again.');
+                }
+            }
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        // Focus input on load
+        window.addEventListener('load', function() {
+            document.getElementById('userInput').focus();
+        });
+    </script>
+</body>
+</html>
