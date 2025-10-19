@@ -77,8 +77,8 @@ class EmotionalBuddyChatbot:
                 'intensity_low': ['slightly disappointed', 'bit let down']
             },
             'neutral': {
-                'keywords': ['okay', 'fine', 'alright', 'normal', 'whatever', 'meh'],
-                'patterns': [r'😐', r'😑'],
+                'keywords': ['okay', 'fine', 'alright', 'normal', 'whatever', 'meh', 'how to', 'what is', 'tell me', 'explain', 'question', 'help me with', 'can you'],
+                'patterns': [r'😐', r'😑', r'\bhow\b', r'\bwhat\b', r'\bwhere\b', r'\bwhen\b', r'\bwhy\b'],
                 'intensity_high': [],
                 'intensity_low': []
             }
@@ -303,16 +303,22 @@ class EmotionalBuddyChatbot:
             },
             'neutral': {
                 'curious': [
-                    "How are you feeling today? Anything on your mind?",
-                    "What's new with you? I'm here to chat about anything!",
-                    "Tell me what's going on in your world right now.",
-                    "I'm all ears! What would you like to talk about?"
+                    "I'm here to help! While I specialize in emotional support, I can chat about various topics. What's on your mind?",
+                    "I'm listening! Feel free to share your thoughts, questions, or feelings with me.",
+                    "Tell me more about what you're thinking. I'm here to support you!",
+                    "I'm all ears! Whether it's about feelings, goals, or questions - let's talk!"
                 ],
                 'engaging': [
-                    "Sometimes neutral is exactly what we need. What's on your mind?",
-                    "Every feeling is valid, including feeling 'meh'. Want to explore that?",
-                    "I'm here for you whether you're feeling intense emotions or just coasting along!",
-                    "How's your day treating you so far?"
+                    "That's an interesting topic! While my main focus is emotional wellness, I'm happy to chat. How can I support you today?",
+                    "I'm here for you! If there's something specific bothering you emotionally, or if you just need someone to talk to, I'm listening.",
+                    "Thanks for sharing! I'm primarily designed for emotional support, but I enjoy our conversations. What would you like to discuss?",
+                    "I appreciate you opening up! Whether you need emotional support or just want to chat, I'm here for you."
+                ],
+                'helpful': [
+                    "I notice you're asking about topics outside my emotional support focus. While I'm best at helping with feelings and mental wellness, I'm happy to listen and chat!",
+                    "That's an interesting question! My strength is in emotional support and mental wellness. Is there anything about your feelings or emotional well-being you'd like to explore?",
+                    "I'm here to support you! While I specialize in emotional wellness, I care about what matters to you. How are you feeling about things?",
+                    "Thanks for sharing! I'm most helpful with emotional support and mental health. If you're dealing with any stress, anxiety, or emotions about this topic, I'm here to help!"
                 ]
             }
         }
