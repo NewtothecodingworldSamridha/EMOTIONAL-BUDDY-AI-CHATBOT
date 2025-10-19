@@ -3,99 +3,291 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EmoBuddy - Your Emotional Support Companion</title>
+    <title>EmoBuddy - Your AI Companion for Mental Wellness</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 20px;
-        }
-        .container {
-            width: 100%;
-            max-width: 800px;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 0;
             overflow: hidden;
+        }
+
+        .app-container {
+            width: 100%;
+            height: 100vh;
+            max-width: 1400px;
+            display: flex;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 30px 100px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 320px;
+            background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px 20px;
             display: flex;
             flex-direction: column;
-            height: 90vh;
-            max-height: 700px;
+            gap: 20px;
+            box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1);
         }
-        .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 25px;
+
+        .logo-section {
             text-align: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         }
-        .header h1 {
-            font-size: 28px;
+
+        .logo-section h1 {
+            font-size: 32px;
+            font-weight: 700;
             margin-bottom: 5px;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
         }
-        .header p { font-size: 14px; opacity: 0.9; }
-        .controls { display: flex; gap: 10px; margin-top: 10px; justify-content: center; }
-        .controls button {
-            padding: 8px 15px;
-            font-size: 12px;
+
+        .logo-section p {
+            font-size: 13px;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .mood-tracker {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .mood-tracker h3 {
+            font-size: 16px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .mood-chart {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .mood-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+        }
+
+        .mood-bar {
+            flex: 1;
+            height: 8px;
             background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            margin: 0 10px;
+            overflow: hidden;
+        }
+
+        .mood-bar-fill {
+            height: 100%;
+            background: white;
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+
+        .quick-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .action-btn {
+            background: rgba(255, 255, 255, 0.15);
             border: 1px solid rgba(255, 255, 255, 0.3);
             color: white;
-            border-radius: 15px;
+            padding: 12px 20px;
+            border-radius: 12px;
             cursor: pointer;
             transition: all 0.3s;
+            font-size: 14px;
+            font-weight: 500;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
-        .controls button:hover { background: rgba(255, 255, 255, 0.3); transform: translateY(-2px); }
+
+        .action-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateX(5px);
+        }
+
+        .tips-section {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            font-size: 13px;
+            line-height: 1.6;
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .tips-section h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        /* Main Chat Area */
+        .chat-main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: #f8f9fa;
+        }
+
+        .chat-header {
+            background: white;
+            padding: 20px 30px;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-header h2 {
+            font-size: 24px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .header-btn {
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .header-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
         .chat-container {
             flex: 1;
             overflow-y: auto;
-            padding: 20px;
-            background: #f8f9fa;
+            padding: 30px;
             display: flex;
             flex-direction: column;
+            gap: 20px;
+            background: linear-gradient(to bottom, #f8f9fa 0%, #ffffff 100%);
+        }
+
+        .message {
+            display: flex;
             gap: 15px;
+            animation: messageSlide 0.4s ease-out;
+            max-width: 85%;
         }
-        .message { display: flex; gap: 10px; animation: slideIn 0.3s ease-out; }
-        @keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        .message.user { justify-content: flex-end; }
-        .message.bot { justify-content: flex-start; }
+
+        @keyframes messageSlide {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message.user {
+            align-self: flex-end;
+            flex-direction: row-reverse;
+        }
+
+        .message.bot {
+            align-self: flex-start;
+        }
+
+        .message-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .message.user .message-avatar {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .message.bot .message-avatar {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
         .message-content {
-            max-width: 70%;
-            padding: 12px 18px;
-            border-radius: 18px;
-            word-wrap: break-word;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            white-space: pre-wrap;
+            background: white;
+            padding: 15px 20px;
+            border-radius: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: relative;
+            line-height: 1.6;
+            color: #333;
         }
+
         .message.user .message-content {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            border-bottom-right-radius: 4px;
+            border-bottom-right-radius: 5px;
         }
+
         .message.bot .message-content {
-            background: white;
-            color: #333;
-            border-bottom-left-radius: 4px;
-            border: 1px solid #e0e0e0;
+            border-bottom-left-radius: 5px;
         }
+
         .emotion-badge {
             display: inline-block;
-            padding: 4px 10px;
-            border-radius: 12px;
+            padding: 6px 12px;
+            border-radius: 20px;
             font-size: 11px;
-            margin-top: 8px;
+            margin-top: 10px;
             font-weight: 600;
             text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
+
         .emotion-joy { background: #fef3c7; color: #f59e0b; }
         .emotion-sadness { background: #dbeafe; color: #3b82f6; }
         .emotion-anger { background: #fee2e2; color: #ef4444; }
@@ -106,19 +298,108 @@
         .emotion-love { background: #fce7f3; color: #ec4899; }
         .emotion-disappointment { background: #e5e7eb; color: #6b7280; }
         .emotion-neutral { background: #f3f4f6; color: #6b7280; }
-        .input-area { padding: 20px; background: white; border-top: 1px solid #e0e0e0; display: flex; gap: 10px; }
-        #userInput {
+
+        .welcome-screen {
+            text-align: center;
+            padding: 60px 40px;
+            color: #666;
+        }
+
+        .welcome-screen h2 {
+            font-size: 32px;
+            color: #667eea;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .welcome-screen p {
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+
+        .suggestions {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .suggestion-card {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            border: 2px solid #e0e0e0;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .suggestion-card:hover {
+            border-color: #667eea;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.2);
+        }
+
+        .suggestion-card .icon {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .suggestion-card .title {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .suggestion-card .desc {
+            font-size: 13px;
+            color: #666;
+        }
+
+        .input-area {
+            padding: 20px 30px;
+            background: white;
+            border-top: 1px solid #e0e0e0;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .input-wrapper {
             flex: 1;
-            padding: 12px 18px;
+            position: relative;
+        }
+
+        #userInput {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
             border: 2px solid #e0e0e0;
             border-radius: 25px;
             font-size: 15px;
             outline: none;
             transition: all 0.3s;
+            font-family: inherit;
         }
-        #userInput:focus { border-color: #667eea; box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1); }
-        button {
-            padding: 12px 25px;
+
+        #userInput:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+        }
+
+        .emoji-btn {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .send-btn {
+            padding: 15px 30px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border: none;
@@ -127,202 +408,485 @@
             font-size: 15px;
             font-weight: 600;
             transition: all 0.3s;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        button:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); }
-        button:active { transform: translateY(0); }
-        button:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
-        .typing-indicator { display: none; padding: 12px 18px; background: white; border-radius: 18px; border-bottom-left-radius: 4px; width: 60px; border: 1px solid #e0e0e0; }
-        .typing-indicator span { height: 8px; width: 8px; background: #667eea; border-radius: 50%; display: inline-block; margin: 0 2px; animation: typing 1.4s infinite; }
-        .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
-        .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
-        @keyframes typing { 0%, 60%, 100% { transform: translateY(0); } 30% { transform: translateY(-10px); } }
-        .summary-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); justify-content: center; align-items: center; z-index: 1000; }
-        .summary-content { background: white; padding: 30px; border-radius: 15px; max-width: 500px; width: 90%; max-height: 80vh; overflow-y: auto; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3); }
-        .summary-content h2 { color: #667eea; margin-bottom: 20px; text-align: center; }
-        .stat-item { margin: 15px 0; padding: 15px; background: #f8f9fa; border-radius: 10px; }
-        .stat-label { font-weight: 600; color: #666; margin-bottom: 5px; }
-        .stat-value { font-size: 24px; color: #667eea; font-weight: 700; }
-        .emotion-bar { margin: 10px 0; }
-        .emotion-bar-label { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 14px; }
-        .emotion-bar-fill { height: 25px; background: #e0e0e0; border-radius: 12px; overflow: hidden; }
-        .emotion-bar-inner {
-            height: 100%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            transition: width 0.5s ease;
             display: flex;
             align-items: center;
-            padding: 0 10px;
+            gap: 8px;
+        }
+
+        .send-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .send-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .typing-indicator {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            max-width: 85%;
+        }
+
+        .typing-dots {
+            background: white;
+            padding: 15px 20px;
+            border-radius: 20px;
+            border-bottom-left-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            display: flex;
+            gap: 5px;
+        }
+
+        .typing-dots span {
+            width: 8px;
+            height: 8px;
+            background: #667eea;
+            border-radius: 50%;
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-10px); }
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-content h2 {
+            color: #667eea;
+            margin-bottom: 25px;
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+
+        .stat-value {
+            font-size: 36px;
+            font-weight: 700;
+        }
+
+        .emotion-breakdown {
+            margin-top: 30px;
+        }
+
+        .emotion-breakdown h3 {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .emotion-row {
+            margin-bottom: 15px;
+        }
+
+        .emotion-row-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .emotion-row-bar {
+            height: 30px;
+            background: #f0f0f0;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .emotion-row-fill {
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
             color: white;
             font-size: 12px;
             font-weight: 600;
+            transition: width 0.5s ease;
         }
-        .close-modal { background: #ef4444; margin-top: 20px; width: 100%; }
-        .welcome-message { text-align: center; padding: 40px 20px; color: #666; }
-        .welcome-message h2 { color: #667eea; margin-bottom: 10px; }
-        @media (max-width: 600px) {
-            .container { height: 100vh; max-height: none; border-radius: 0; }
-            .header h1 { font-size: 22px; }
-            .message-content { max-width: 85%; }
+
+        .close-btn {
+            background: #ef4444;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 600;
+            margin-top: 25px;
+            width: 100%;
+            transition: all 0.3s;
+        }
+
+        .close-btn:hover {
+            background: #dc2626;
+            transform: translateY(-2px);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .sidebar {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .app-container {
+                max-width: 100%;
+            }
+
+            .suggestions {
+                grid-template-columns: 1fr;
+            }
+
+            .message {
+                max-width: 95%;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>🤖 EmoBuddy</h1>
-            <p>Your Emotional Support Companion</p>
-            <div class="controls">
-                <button onclick="showSummary()">📊 Summary</button>
-                <button onclick="clearChat()">🗑️ Clear Chat</button>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="logo-section">
+                <h1>🧠 EmoBuddy</h1>
+                <p>Your AI Companion for Mental Wellness</p>
+            </div>
+
+            <div class="mood-tracker">
+                <h3>📊 Today's Mood Tracker</h3>
+                <div class="mood-chart" id="moodChart">
+                    <div class="mood-item">
+                        <span>😊 Joy</span>
+                        <div class="mood-bar"><div class="mood-bar-fill" style="width: 0%"></div></div>
+                        <span>0%</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="quick-actions">
+                <button class="action-btn" onclick="showSummary()">
+                    📈 View Detailed Stats
+                </button>
+                <button class="action-btn" onclick="clearChat()">
+                    🗑️ Clear Conversation
+                </button>
+            </div>
+
+            <div class="tips-section">
+                <h3>💡 Wellness Tips</h3>
+                <p><strong>Remember:</strong> It's okay to not be okay sometimes. Every emotion is valid and helps us grow.</p>
+                <p style="margin-top: 10px;"><strong>Try:</strong> Deep breathing, journaling, or talking to someone you trust when feeling overwhelmed.</p>
             </div>
         </div>
-        <div class="chat-container" id="chatContainer">
-            <div class="welcome-message">
-                <h2>Welcome! 💙</h2>
-                <p>I'm EmoBuddy, your emotional support companion.</p>
-                <p>Share your feelings, thoughts, or anything on your mind.</p>
-                <p>I'm here to listen and support you! 🌟</p>
+
+        <!-- Main Chat Area -->
+        <div class="chat-main">
+            <div class="chat-header">
+                <h2>Chat with EmoBuddy</h2>
+                <div class="header-actions">
+                    <button class="header-btn" onclick="showSummary()">📊 Stats</button>
+                    <button class="header-btn" onclick="clearChat()">🗑️ Clear</button>
+                </div>
             </div>
-        </div>
-        <div class="input-area">
-            <input type="text" id="userInput" placeholder="Type your message..." onkeypress="handleKeyPress(event)">
-            <button onclick="sendMessage()" id="sendBtn">Send</button>
+
+            <div class="chat-container" id="chatContainer">
+                <div class="welcome-screen">
+                    <h2>Welcome to EmoBuddy! 👋</h2>
+                    <p>I'm your AI companion for emotional support and mental wellness.</p>
+                    <p>Share your feelings, thoughts, or anything on your mind. I'm here to listen! 💙</p>
+                    
+                    <div class="suggestions">
+                        <div class="suggestion-card" onclick="sendSuggestion('I\'m feeling happy today!')">
+                            <div class="icon">😊</div>
+                            <div class="title">Share Joy</div>
+                            <div class="desc">Tell me about good things</div>
+                        </div>
+                        <div class="suggestion-card" onclick="sendSuggestion('I\'m feeling stressed and anxious')">
+                            <div class="icon">😰</div>
+                            <div class="title">Feeling Anxious</div>
+                            <div class="desc">Let's talk about it</div>
+                        </div>
+                        <div class="suggestion-card" onclick="sendSuggestion('I need some motivation')">
+                            <div class="icon">💪</div>
+                            <div class="title">Need Motivation</div>
+                            <div class="desc">Get inspired today</div>
+                        </div>
+                        <div class="suggestion-card" onclick="sendSuggestion('Just want to chat')">
+                            <div class="icon">💬</div>
+                            <div class="title">Casual Chat</div>
+                            <div class="desc">Have a conversation</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-area">
+                <div class="input-wrapper">
+                    <input type="text" id="userInput" placeholder="Type your message here..." onkeypress="handleKeyPress(event)">
+                    <button class="emoji-btn">😊</button>
+                </div>
+                <button class="send-btn" onclick="sendMessage()" id="sendBtn">
+                    <span>Send</span>
+                    <span>→</span>
+                </button>
+            </div>
         </div>
     </div>
-    <div class="summary-modal" id="summaryModal">
-        <div class="summary-content">
+
+    <!-- Modal -->
+    <div class="modal" id="summaryModal">
+        <div class="modal-content">
             <h2>📊 Your Emotional Journey</h2>
             <div id="summaryContent"></div>
-            <button class="close-modal" onclick="closeSummary()">Close</button>
+            <button class="close-btn" onclick="closeSummary()">Close</button>
         </div>
     </div>
+
     <script>
+        let emotionData = {};
+
+        function sendSuggestion(text) {
+            document.getElementById('userInput').value = text;
+            sendMessage();
+        }
+
         async function sendMessage() {
             const input = document.getElementById('userInput');
             const message = input.value.trim();
+            
             if (!message) return;
+            
             addMessage(message, 'user');
             input.value = '';
+            
             showTyping();
+            
             const sendBtn = document.getElementById('sendBtn');
             sendBtn.disabled = true;
+            
             try {
                 const response = await fetch('/chat', {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
                     body: JSON.stringify({ message: message })
                 });
+                
                 const data = await response.json();
+                
                 hideTyping();
                 addMessage(data.response, 'bot', data.emotion, data.intensity);
+                updateMoodTracker(data.emotion);
+                
             } catch (error) {
                 hideTyping();
                 addMessage('Sorry, I encountered an error. Please try again.', 'bot');
                 console.error('Error:', error);
             }
+            
             sendBtn.disabled = false;
         }
+
         function addMessage(text, type, emotion = null, intensity = null) {
             const chatContainer = document.getElementById('chatContainer');
-            const welcomeMsg = chatContainer.querySelector('.welcome-message');
-            if (welcomeMsg) welcomeMsg.remove();
+            
+            const welcomeScreen = chatContainer.querySelector('.welcome-screen');
+            if (welcomeScreen) welcomeScreen.remove();
+            
             const messageDiv = document.createElement('div');
             messageDiv.className = `message ${type}`;
+            
+            const avatar = document.createElement('div');
+            avatar.className = 'message-avatar';
+            avatar.textContent = type === 'user' ? '👤' : '🤖';
+            
             const contentDiv = document.createElement('div');
             contentDiv.className = 'message-content';
             contentDiv.textContent = text;
+            
             if (emotion && type === 'bot') {
                 const badge = document.createElement('div');
                 badge.className = `emotion-badge emotion-${emotion}`;
                 badge.textContent = `${emotion} ${intensity === 'high' ? '🔥' : intensity === 'low' ? '💫' : '⭐'}`;
                 contentDiv.appendChild(badge);
             }
+            
+            messageDiv.appendChild(avatar);
             messageDiv.appendChild(contentDiv);
             chatContainer.appendChild(messageDiv);
+            
             chatContainer.scrollTop = chatContainer.scrollHeight;
         }
+
         function showTyping() {
             const chatContainer = document.getElementById('chatContainer');
             const typingDiv = document.createElement('div');
-            typingDiv.className = 'message bot';
+            typingDiv.className = 'typing-indicator';
             typingDiv.id = 'typingIndicator';
-            const indicator = document.createElement('div');
-            indicator.className = 'typing-indicator';
-            indicator.style.display = 'block';
-            indicator.innerHTML = '<span></span><span></span><span></span>';
-            typingDiv.appendChild(indicator);
+            
+            const avatar = document.createElement('div');
+            avatar.className = 'message-avatar';
+            avatar.style.background = 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)';
+            avatar.textContent = '🤖';
+            
+            const dots = document.createElement('div');
+            dots.className = 'typing-dots';
+            dots.innerHTML = '<span></span><span></span><span></span>';
+            
+            typingDiv.appendChild(avatar);
+            typingDiv.appendChild(dots);
             chatContainer.appendChild(typingDiv);
             chatContainer.scrollTop = chatContainer.scrollHeight;
         }
+
         function hideTyping() {
             const typing = document.getElementById('typingIndicator');
             if (typing) typing.remove();
         }
+
+        function updateMoodTracker(emotion) {
+            emotionData[emotion] = (emotionData[emotion] || 0) + 1;
+            const total = Object.values(emotionData).reduce((a, b) => a + b, 0);
+            
+            const moodChart = document.getElementById('moodChart');
+            moodChart.innerHTML = '';
+            
+            const emotionIcons = {
+                joy: '😊', sadness: '😢', anger: '😠', anxiety: '😰',
+                gratitude: '🙏', excitement: '🎉', confusion: '🤔',
+                love: '❤️', disappointment: '😞', neutral: '😐'
+            };
+            
+            Object.entries(emotionData).forEach(([emotion, count]) => {
+                const percentage = ((count / total) * 100).toFixed(0);
+                const item = document.createElement('div');
+                item.className = 'mood-item';
+                item.innerHTML = `
+                    <span>${emotionIcons[emotion] || '😊'} ${emotion}</span>
+                    <div class="mood-bar"><div class="mood-bar-fill" style="width: ${percentage}%"></div></div>
+                    <span>${percentage}%</span>
+                `;
+                moodChart.appendChild(item);
+            });
+        }
+
         async function showSummary() {
             try {
                 const response = await fetch('/summary');
                 const data = await response.json();
+                
                 const summaryContent = document.getElementById('summaryContent');
+                
                 if (data.message) {
-                    summaryContent.innerHTML = `<p style="text-align: center; color: #666;">${data.message}</p>`;
+                    summaryContent.innerHTML = `<p style="text-align: center; color: #666; padding: 20px;">${data.message}</p>`;
                 } else {
                     let html = `
-                        <div class="stat-item"><div class="stat-label">Chat Duration</div><div class="stat-value">${data.duration} minutes</div></div>
-                        <div class="stat-item"><div class="stat-label">Total Messages</div><div class="stat-value">${data.total_messages}</div></div>
-                        <div class="stat-item"><div class="stat-label">Predominant Emotion</div><div class="stat-value">${data.top_emotion}</div></div>
-                        <h3 style="margin: 20px 0 10px; color: #667eea;">Emotional Breakdown</h3>
+                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 30px;">
+                            <div class="stat-card">
+                                <div class="stat-label">Duration</div>
+                                <div class="stat-value">${data.duration}<span style="font-size: 16px;">min</span></div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-label">Messages</div>
+                                <div class="stat-value">${data.total_messages}</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-label">Top Emotion</div>
+                                <div class="stat-value" style="font-size: 24px;">${data.top_emotion}</div>
+                            </div>
+                        </div>
+                        <div class="emotion-breakdown">
+                            <h3>Emotional Breakdown</h3>
                     `;
+                    
                     data.breakdown.forEach(item => {
                         html += `
-                            <div class="emotion-bar">
-                                <div class="emotion-bar-label">
-                                    <span>${item.emotion.charAt(0).toUpperCase() + item.emotion.slice(1)}</span>
+                            <div class="emotion-row">
+                                <div class="emotion-row-header">
+                                    <span><strong>${item.emotion.charAt(0).toUpperCase() + item.emotion.slice(1)}</strong></span>
                                     <span>${item.percentage}%</span>
                                 </div>
-                                <div class="emotion-bar-fill">
-                                    <div class="emotion-bar-inner" style="width: ${item.percentage}%">${item.count} times</div>
+                                <div class="emotion-row-bar">
+                                    <div class="emotion-row-fill" style="width: ${item.percentage}%">
+                                        ${item.count} times
+                                    </div>
                                 </div>
                             </div>
                         `;
                     });
+                    
+                    html += '</div>';
                     summaryContent.innerHTML = html;
                 }
+                
                 document.getElementById('summaryModal').style.display = 'flex';
             } catch (error) {
                 console.error('Error fetching summary:', error);
                 alert('Failed to load summary. Please try again.');
             }
         }
+
         function closeSummary() {
             document.getElementById('summaryModal').style.display = 'none';
         }
+
         async function clearChat() {
             if (confirm('Are you sure you want to clear the chat history?')) {
                 try {
                     await fetch('/clear', { method: 'POST' });
+                    
                     const chatContainer = document.getElementById('chatContainer');
                     chatContainer.innerHTML = `
-                        <div class="welcome-message">
-                            <h2>Welcome Back! 💙</h2>
-                            <p>I'm EmoBuddy, your emotional support companion.</p>
-                            <p>Share your feelings, thoughts, or anything on your mind.</p>
-                            <p>I'm here to listen and support you! 🌟</p>
-                        </div>
-                    `;
-                } catch (error) {
-                    console.error('Error clearing chat:', error);
-                    alert('Failed to clear chat. Please try again.');
-                }
-            }
-        }
-        function handleKeyPress(event) {
-            if (event.key === 'Enter') sendMessage();
-        }
-        window.onclick = function(event) {
-            const modal = document.getElementById('summaryModal');
-            if (event.target === modal) closeSummary();
-        }
-    </script>
-</body>
-</html>
+                        <div class="welcome-screen">
+                            <h2>Welcome Back! 👋</h2>
+                            <p>I'm your AI companion for emotional support and mental wellness.</p>
+                            <p>Share your feelings, thoughts, or anything on your mind. I'm here to listen! 💙</p>
