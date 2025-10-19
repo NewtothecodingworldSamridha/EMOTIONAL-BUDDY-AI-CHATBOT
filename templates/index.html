@@ -5,12 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EmoBuddy - Your Emotional Support Companion</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -20,7 +15,6 @@
             align-items: center;
             padding: 20px;
         }
-
         .container {
             width: 100%;
             max-width: 800px;
@@ -33,7 +27,6 @@
             height: 90vh;
             max-height: 700px;
         }
-
         .header {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
@@ -41,7 +34,6 @@
             text-align: center;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-
         .header h1 {
             font-size: 28px;
             margin-bottom: 5px;
@@ -50,19 +42,8 @@
             justify-content: center;
             gap: 10px;
         }
-
-        .header p {
-            font-size: 14px;
-            opacity: 0.9;
-        }
-
-        .controls {
-            display: flex;
-            gap: 10px;
-            margin-top: 10px;
-            justify-content: center;
-        }
-
+        .header p { font-size: 14px; opacity: 0.9; }
+        .controls { display: flex; gap: 10px; margin-top: 10px; justify-content: center; }
         .controls button {
             padding: 8px 15px;
             font-size: 12px;
@@ -73,12 +54,7 @@
             cursor: pointer;
             transition: all 0.3s;
         }
-
-        .controls button:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-2px);
-        }
-
+        .controls button:hover { background: rgba(255, 255, 255, 0.3); transform: translateY(-2px); }
         .chat-container {
             flex: 1;
             overflow-y: auto;
@@ -88,32 +64,10 @@
             flex-direction: column;
             gap: 15px;
         }
-
-        .message {
-            display: flex;
-            gap: 10px;
-            animation: slideIn 0.3s ease-out;
-        }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .message.user {
-            justify-content: flex-end;
-        }
-
-        .message.bot {
-            justify-content: flex-start;
-        }
-
+        .message { display: flex; gap: 10px; animation: slideIn 0.3s ease-out; }
+        @keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .message.user { justify-content: flex-end; }
+        .message.bot { justify-content: flex-start; }
         .message-content {
             max-width: 70%;
             padding: 12px 18px;
@@ -122,20 +76,17 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             white-space: pre-wrap;
         }
-
         .message.user .message-content {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border-bottom-right-radius: 4px;
         }
-
         .message.bot .message-content {
             background: white;
             color: #333;
             border-bottom-left-radius: 4px;
             border: 1px solid #e0e0e0;
         }
-
         .emotion-badge {
             display: inline-block;
             padding: 4px 10px;
@@ -145,7 +96,6 @@
             font-weight: 600;
             text-transform: uppercase;
         }
-
         .emotion-joy { background: #fef3c7; color: #f59e0b; }
         .emotion-sadness { background: #dbeafe; color: #3b82f6; }
         .emotion-anger { background: #fee2e2; color: #ef4444; }
@@ -156,14 +106,223 @@
         .emotion-love { background: #fce7f3; color: #ec4899; }
         .emotion-disappointment { background: #e5e7eb; color: #6b7280; }
         .emotion-neutral { background: #f3f4f6; color: #6b7280; }
-
-        .input-area {
-            padding: 20px;
-            background: white;
-            border-top: 1px solid #e0e0e0;
-            display: flex;
-            gap: 10px;
-        }
-
+        .input-area { padding: 20px; background: white; border-top: 1px solid #e0e0e0; display: flex; gap: 10px; }
         #userInput {
-            flex:
+            flex: 1;
+            padding: 12px 18px;
+            border: 2px solid #e0e0e0;
+            border-radius: 25px;
+            font-size: 15px;
+            outline: none;
+            transition: all 0.3s;
+        }
+        #userInput:focus { border-color: #667eea; box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1); }
+        button {
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        button:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); }
+        button:active { transform: translateY(0); }
+        button:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+        .typing-indicator { display: none; padding: 12px 18px; background: white; border-radius: 18px; border-bottom-left-radius: 4px; width: 60px; border: 1px solid #e0e0e0; }
+        .typing-indicator span { height: 8px; width: 8px; background: #667eea; border-radius: 50%; display: inline-block; margin: 0 2px; animation: typing 1.4s infinite; }
+        .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+        .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes typing { 0%, 60%, 100% { transform: translateY(0); } 30% { transform: translateY(-10px); } }
+        .summary-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); justify-content: center; align-items: center; z-index: 1000; }
+        .summary-content { background: white; padding: 30px; border-radius: 15px; max-width: 500px; width: 90%; max-height: 80vh; overflow-y: auto; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3); }
+        .summary-content h2 { color: #667eea; margin-bottom: 20px; text-align: center; }
+        .stat-item { margin: 15px 0; padding: 15px; background: #f8f9fa; border-radius: 10px; }
+        .stat-label { font-weight: 600; color: #666; margin-bottom: 5px; }
+        .stat-value { font-size: 24px; color: #667eea; font-weight: 700; }
+        .emotion-bar { margin: 10px 0; }
+        .emotion-bar-label { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 14px; }
+        .emotion-bar-fill { height: 25px; background: #e0e0e0; border-radius: 12px; overflow: hidden; }
+        .emotion-bar-inner {
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+            color: white;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .close-modal { background: #ef4444; margin-top: 20px; width: 100%; }
+        .welcome-message { text-align: center; padding: 40px 20px; color: #666; }
+        .welcome-message h2 { color: #667eea; margin-bottom: 10px; }
+        @media (max-width: 600px) {
+            .container { height: 100vh; max-height: none; border-radius: 0; }
+            .header h1 { font-size: 22px; }
+            .message-content { max-width: 85%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🤖 EmoBuddy</h1>
+            <p>Your Emotional Support Companion</p>
+            <div class="controls">
+                <button onclick="showSummary()">📊 Summary</button>
+                <button onclick="clearChat()">🗑️ Clear Chat</button>
+            </div>
+        </div>
+        <div class="chat-container" id="chatContainer">
+            <div class="welcome-message">
+                <h2>Welcome! 💙</h2>
+                <p>I'm EmoBuddy, your emotional support companion.</p>
+                <p>Share your feelings, thoughts, or anything on your mind.</p>
+                <p>I'm here to listen and support you! 🌟</p>
+            </div>
+        </div>
+        <div class="input-area">
+            <input type="text" id="userInput" placeholder="Type your message..." onkeypress="handleKeyPress(event)">
+            <button onclick="sendMessage()" id="sendBtn">Send</button>
+        </div>
+    </div>
+    <div class="summary-modal" id="summaryModal">
+        <div class="summary-content">
+            <h2>📊 Your Emotional Journey</h2>
+            <div id="summaryContent"></div>
+            <button class="close-modal" onclick="closeSummary()">Close</button>
+        </div>
+    </div>
+    <script>
+        async function sendMessage() {
+            const input = document.getElementById('userInput');
+            const message = input.value.trim();
+            if (!message) return;
+            addMessage(message, 'user');
+            input.value = '';
+            showTyping();
+            const sendBtn = document.getElementById('sendBtn');
+            sendBtn.disabled = true;
+            try {
+                const response = await fetch('/chat', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ message: message })
+                });
+                const data = await response.json();
+                hideTyping();
+                addMessage(data.response, 'bot', data.emotion, data.intensity);
+            } catch (error) {
+                hideTyping();
+                addMessage('Sorry, I encountered an error. Please try again.', 'bot');
+                console.error('Error:', error);
+            }
+            sendBtn.disabled = false;
+        }
+        function addMessage(text, type, emotion = null, intensity = null) {
+            const chatContainer = document.getElementById('chatContainer');
+            const welcomeMsg = chatContainer.querySelector('.welcome-message');
+            if (welcomeMsg) welcomeMsg.remove();
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${type}`;
+            const contentDiv = document.createElement('div');
+            contentDiv.className = 'message-content';
+            contentDiv.textContent = text;
+            if (emotion && type === 'bot') {
+                const badge = document.createElement('div');
+                badge.className = `emotion-badge emotion-${emotion}`;
+                badge.textContent = `${emotion} ${intensity === 'high' ? '🔥' : intensity === 'low' ? '💫' : '⭐'}`;
+                contentDiv.appendChild(badge);
+            }
+            messageDiv.appendChild(contentDiv);
+            chatContainer.appendChild(messageDiv);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+        function showTyping() {
+            const chatContainer = document.getElementById('chatContainer');
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'message bot';
+            typingDiv.id = 'typingIndicator';
+            const indicator = document.createElement('div');
+            indicator.className = 'typing-indicator';
+            indicator.style.display = 'block';
+            indicator.innerHTML = '<span></span><span></span><span></span>';
+            typingDiv.appendChild(indicator);
+            chatContainer.appendChild(typingDiv);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+        function hideTyping() {
+            const typing = document.getElementById('typingIndicator');
+            if (typing) typing.remove();
+        }
+        async function showSummary() {
+            try {
+                const response = await fetch('/summary');
+                const data = await response.json();
+                const summaryContent = document.getElementById('summaryContent');
+                if (data.message) {
+                    summaryContent.innerHTML = `<p style="text-align: center; color: #666;">${data.message}</p>`;
+                } else {
+                    let html = `
+                        <div class="stat-item"><div class="stat-label">Chat Duration</div><div class="stat-value">${data.duration} minutes</div></div>
+                        <div class="stat-item"><div class="stat-label">Total Messages</div><div class="stat-value">${data.total_messages}</div></div>
+                        <div class="stat-item"><div class="stat-label">Predominant Emotion</div><div class="stat-value">${data.top_emotion}</div></div>
+                        <h3 style="margin: 20px 0 10px; color: #667eea;">Emotional Breakdown</h3>
+                    `;
+                    data.breakdown.forEach(item => {
+                        html += `
+                            <div class="emotion-bar">
+                                <div class="emotion-bar-label">
+                                    <span>${item.emotion.charAt(0).toUpperCase() + item.emotion.slice(1)}</span>
+                                    <span>${item.percentage}%</span>
+                                </div>
+                                <div class="emotion-bar-fill">
+                                    <div class="emotion-bar-inner" style="width: ${item.percentage}%">${item.count} times</div>
+                                </div>
+                            </div>
+                        `;
+                    });
+                    summaryContent.innerHTML = html;
+                }
+                document.getElementById('summaryModal').style.display = 'flex';
+            } catch (error) {
+                console.error('Error fetching summary:', error);
+                alert('Failed to load summary. Please try again.');
+            }
+        }
+        function closeSummary() {
+            document.getElementById('summaryModal').style.display = 'none';
+        }
+        async function clearChat() {
+            if (confirm('Are you sure you want to clear the chat history?')) {
+                try {
+                    await fetch('/clear', { method: 'POST' });
+                    const chatContainer = document.getElementById('chatContainer');
+                    chatContainer.innerHTML = `
+                        <div class="welcome-message">
+                            <h2>Welcome Back! 💙</h2>
+                            <p>I'm EmoBuddy, your emotional support companion.</p>
+                            <p>Share your feelings, thoughts, or anything on your mind.</p>
+                            <p>I'm here to listen and support you! 🌟</p>
+                        </div>
+                    `;
+                } catch (error) {
+                    console.error('Error clearing chat:', error);
+                    alert('Failed to clear chat. Please try again.');
+                }
+            }
+        }
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') sendMessage();
+        }
+        window.onclick = function(event) {
+            const modal = document.getElementById('summaryModal');
+            if (event.target === modal) closeSummary();
+        }
+    </script>
+</body>
+</html>
