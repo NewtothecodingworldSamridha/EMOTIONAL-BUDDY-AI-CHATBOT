@@ -13,5 +13,5 @@ An intelligent emotional support companion that detects emotions from user messa
 
 
 
-Your app is live at: (https://emotional-buddy-chatbot.onrender.com/)
+Your app is live at: (https://emotional-buddy-chatbot.onrender.com)
 
